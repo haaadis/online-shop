@@ -1,0 +1,139 @@
+<html lang="en" >
+	<head>
+        <title>cart</title>
+        <link rel ="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+        <meta charset="utf-8">
+        <meta name="vhome bage" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+        
+        <style>
+         
+          .navbar {
+            margin-bottom: 50px;
+            border-radius: 0;
+          }
+          
+         
+           .jumbotron {
+            margin-bottom: 0;
+          }
+         
+          
+          footer {
+            background-color: #6f8169;
+            padding: 25px;
+          }
+        </style>
+      </head>
+    
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="{{ url_for('home') }}">BS</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="">All</a></li>
+        <li><a href="{{ url_for('bags') }}">BAGS</a></li>
+        <li><a href="">Shoes</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-user"></span> login</a></li>
+        <li class="active"><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart
+          <div class="pos-absolute d-flex ai-center jc-center bg-p-500 color-white right-0 bottom-0 styles_BaseLayoutMiniCart__cartCountBadge__bQVtD">
+        <span class="pos-relative text-caption-strong styles_BaseLayoutMiniCart__cartCountBadgeText__D84pJ">{{orders|length}}
+          </span>
+          </div>
+        </a></li>
+        
+      </ul>
+      </div>
+    </div>
+    </nav>
+
+
+<div class="container bootstrap snippets bootdey">
+    <div class="col-md-9 col-sm-8 content">
+        <div class="row">
+            <div class="col-md-12">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info panel-shadow">
+                    {% if  orders|length !=0 %}
+                    <div class="panel-body"> 
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% for index, (m,description,quantity,price) in enumerate(orders) %}
+                                <tr>
+                                    <td><a href="{{ url_for('details',m=m) }}"><img src="C:\Users\USER\Desktop\project\static\images\product-images\{{m}}.jpg" class="img-cart" alt={{m}} style="width:100%"></a></td>
+                                    <td><strong>{{m}}</strong><p>{{description}}</p></td>
+                                    <td>
+                                    <form class="form-inline">
+                                        <input class="form-control" type="text" value= {{quantity}}>
+                                        <button rel="tooltip" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                                        <a href="{{ url_for('delete', index=index) }}"  class="btn btn-primary"><i class="fa fa-trash-o"></i></a>
+                                    </form>
+                                    </td>
+                                    <td>{{price}}</td>
+                                    <td>{{price}}*{{quantity}}</td>
+                                </tr>
+                                {% endfor %}
+
+                                <tr>
+                                    <td colspan="6">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Total Product</td>
+                                    <td>[Sum of below tbody fields A]</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Tax</td>
+                                    <td>$2.00</td>
+                                </tr>
+                                <tr>
+                                  <td colspan="4" class="text-right">send cost</td>
+                                  <td>20.000</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
+                                    <td>[Sum of below tbody fields A]</td>
+                                </tr>
+                                <tr>
+                                    <a href="{{url_for('empty_cart')}}">remove all</a>
+                                </tr>
+                            </tbody>
+                        </table>
+                      </div>
+                        <a href="#" class="btn btn-primary pull-right">Next<span class="glyphicon glyphicon-chevron-right"></span></a>                 
+                    {% else: %}                            
+                        <div class="no-records">Your Cart is Empty</div>
+                    {% endif %}  
+                    <a href="{{ url_for('home')}}" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>
+                </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>                  
