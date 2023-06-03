@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <title>bagsshop</title>
+  <link rel ="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+	<meta charset="utf-8">
+	<meta name="vhome bage" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <style>	 
+   .navbar {
+   margin-bottom: 50px;
+   border-radius: 0;
+   }
+   
+  
+    .jumbotron {
+   margin-bottom: 0;
+   }
+  
+   
+   footer {
+   background-color: #6f8169;
+   padding: 25px;
+   }
+
+    .add-to-cart-button {
+  background-color: rgb(130, 165, 130);
+  
+  border: 1px solid white;
+  color: rgb(89, 117, 106);
+  padding: 10 px;
+  
+}
+
+/* Add to cart button hover */
+.add-to-cart-button:hover {
+  border: 1px solid white;
+  background-color: rgb(115, 158, 115);
+  padding:10px;
+
+}
+.p {
+      font-family: "jubilat", sans-serif;
+      font-weight: 500;
+      font-size: 5em;
+      line-height: 1.7em;
+      padding-bottom: 1em;
+    }
+    .lined {
+      border-top: 1px solid #efe5e5;
+      padding-top: 1em;
+      padding-bottom: 0.15em;
+    }
+    .box {
+      background-color: gray;
+      ;
+      padding: 10px;
+    }
+
+    .box_kala{
+      background-color: rgb(111, 147, 135);
+      padding: 10px
+
+
+
+
+    }
+  </style>
+  </head>
+
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="{{ url_for('home') }}">BS</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li class="active"><a href="{{ url_for('bags') }}">BAGS</a></li>
+        <li><a href="#">shoes</a></li>
+       
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-user"></span> login</a></li>
+        <li><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart
+          <div class="pos-absolute d-flex ai-center jc-center bg-p-500 color-white right-0 bottom-0 styles_BaseLayoutMiniCart__cartCountBadge__bQVtD">
+        <span class="pos-relative text-caption-strong styles_BaseLayoutMiniCart__cartCountBadgeText__D84pJ">{{orders|length}}</span>         
+          </div>
+        </a></li>
+        
+      </ul>
+      </div>
+    </div>
+    </nav>
+  <div class="box">
+    <h1>bags</h1></div>
+  <u1>
+  {%for bag in bags%}
+  <br><div class="'box_kala">
+  
+  <div class="frame">
+    <form method = 'POST' action= '/bdetails'><input type='hidden' name= 'bag' value='{{ bag }}'><a href="/details">more information</a></form>
+  
+
+  </div>
+  </div>
+  <div class="lined"></div>
+  {% endfor %}
+  </u1>
+
+</body>
+ </html>
+
+  
