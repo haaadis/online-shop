@@ -46,19 +46,24 @@ def login():
 		password = request.form['password']
 		if email in admin and admin[email] == password:
 			message = 'Logged in successfully'
-			return render_template('home.html',message=message,adminlog=True,log=True)
+			session['admin']=True
+			session['loggedin'] = True
+			session['id'] = 0
+			session['username'] = list(admin.keys())[0]
+			return render_template('home.html',message=message)
 		elif email not in admin:
 			conn = sqlite3.connect('users.db')
 			cursor = conn.cursor()
 			cursor.execute('SELECT * FROM users WHERE email = ? AND password =?',(email, password,))
 			user = cursor.fetchone()
 			if user:
+			        session['admin']=False
 				session['loggedin'] = True
 				session['id'] = user[0]
 				session['username'] = user[1]
 				message = 'Logged in successfully'
 				conn.close()
-				return render_template('home.html',message=message,adminlog=False,log=True)
+				return render_template('home.html',message=message)
 			else:
 				message = 'please register first'
 		else:
@@ -68,6 +73,7 @@ def login():
 # Make function for logout session
 @app.route('/logout')
 def logout():
+	session.pop('admin', None)
 	session.pop('loggedin', None)
 	session.pop('userid', None)
 	session.pop('email', None)
