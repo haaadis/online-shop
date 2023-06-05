@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.secret_key = "secret key" 
 
 admin = {'kunal@gmail.com': '1234'}   #admin email and password
-
+orders=[]
 @app.route('/')
 def home():
 	return render_template('home.html')
@@ -126,3 +126,28 @@ def resetpassword():
 	elif request.method == 'POST':
 		message = 'Please fill out the form !'			
 	return render_template('resetpassword.html', message=message)
+			   
+@app.route('/cart')
+def cart():
+    total_price=sum([x[3]*x[2] for x in orders])
+    tax =sum([x[3]*x[2] for x in orders])*0.09 
+    return render_template('shoppingcart.html', orders=orders,tax=tax,total_price=total_price,total=tax+total_price,enumerate=enumerate)
+
+@app.route('/add<m>', methods=['POST'])
+def add(m):
+    description = request.form.get('color') +','+ request.form.get('size')
+    quantity = int(request.form.get('quantity'))
+    price = 1000
+    orders.append([m,description,quantity,price])
+    message = m+'added to cart' 
+    return redirect(url_for('details',m=m,message=message))
+    
+@app.route('/delete/<int:index>')
+def delete(index):
+    orders.pop(index)
+    return redirect(url_for('cart'))
+
+@app.route('/empty')
+def empty_cart():
+	orders.clear()
+	return redirect(url_for('home'))
