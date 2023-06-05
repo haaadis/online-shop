@@ -104,72 +104,104 @@
     </div>
     </nav>
     <style>
-    .frame {
-
-      padding: 10px;
-      width: auto;
-      background-color: gray;
-      position: relative;
-      top: 0;
-      transition: top 0.5s ease-in-out;
-      border-radius: 5px
-    }
-
-    .frame:hover {
-      background-color: black;
-      top: -10px;
-      
-    
-    }
-    .frame2 {
-
-    padding: 10px;
-    width: auto;
-    background-color: gray;
-    position: relative;
-    top: 0;
-    transition: top 0.5s ease-in-out;
-    border-radius: 5px
-  } 
-
-    .frame2:hover {
-    background-color: black;
-    top: -10px;
-    
-
+    *{
+      direction: rtl;
   }
-    .button {
-     padding: 10px;
-     width : auto;
-     font-family: "jubilat", sans-serif;
-     background-color: gray
-     
-     
-     
-
-   
+  
+  a{
+      text-decoration: none;
+  }
+  .shoping-card{
+      text-align: center;
+      box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, .2);
+      margin: 10px 15px;
+      border-radius: 5px;
+      padding: 10px;
+  }
+  
+  .shoping-card .img-sec{
+      position: relative;
+  }
+  
+  .shoping-card .img-sec img{
+      width: 60%;
+  }
+  
+  .shoping-card .title{
+      color: #333;
+      margin: 15px;
+  }
+  
+  .shoping-card .buttons{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 15px;
+  }
+  
+  
+  .shoping-card .buttons .right .price{
+      color: #666;
+      font-weight: bold;
+  }
+  
+  .shoping-card .buttons .left{
+      display: flex;
+  }
+  
+  .shoping-card .buttons .left .extend-btn{
+      display: flex;
+      margin-left: 5px;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #595959;
+      color: white;
+      width: 25px;
+      padding : 8px 12px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: .75s;
+  
+  }
+  
+  .shoping-card .buttons .left .extend-btn:hover{
+      width:  85px;
+  }
+  
+  .shoping-card .buttons .left .extend-btn:hover .b-text{
+      display: block;
+  }
+  
+  .shoping-card .buttons .left .extend-btn .b-text{
+      display: none;
+      color: white;
+  }
+  
+  .shoping-card .buttons .left .extend-btn  .b-icon{
+      color: white;
+      padding-top: 3px;
   }
   </style>
-<div class="frame">
-  <h1>bags</h1></div>
-  {%for bag in bags%}
-
-  <br><br>
-
-  <div class="frame2">
-  <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm--M40995_PM2_Front%20view.png?wid=656&hei=656" alt={{bag[1]}} width="100" height="100"></body></div>  
-  <br>
-  
-  <div class="button">
-    <a href="{{ url_for('details',m='bag1') }}">more information</p>
-  
-  </div>
-  <div class="lined"></div>
-  {% endfor %}
-
-
+  <div class="shoping-card">
+    <div class="img-sec">
+        <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt="">
+    </div>
+   
+    <div class="title">
+       name?
+    </div>
+    <div class="buttons">
+       
+        <div class="right">
+            <span class="price">price?</span>
+        </div>
+        <div class="left">
+            <div class="extend-btn">                     
+                <a class="b-text" href="{{ url_for('details',m='bag1') }}">more information</a>
+                <a class= "b-icon" href=""><i class="bi bi-bag"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
-
-  
-    
