@@ -89,8 +89,9 @@
 		}
 
 		
-		
+	
 	</style>
+<h1>{{ name }}</h1>
 </head>
 <body>
 	<nav class="navbar navbar-inverse">
@@ -124,9 +125,67 @@
 		  </div>
 		</div>
 	  </nav>
-	<h1>Stock Page</h1>
-	<div Class="imgframe"></div>
-	<img src="C:\Users\Shayan\Desktop\AP_project\static\bag1.jpg" alt="bag?">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<style>
+	   * {
+  		box-sizing: border-box;
+	  }
+
+	  .row {
+ 		display: flex;
+	  }
+
+/* Create three equal columns that sits next to each other */
+	  .column {
+  		flex: 33.33%;
+ 		padding: 5px;
+	  }
+	  .blank {
+		display : inline-block;
+ 	    background-color: #333b;
+		border-radius: 5px;
+ 		height: 1em;
+		width : 0.25em;
+ 		margin-right: 0.5em
+		
+	
+	  }
+
+	  .image {
+		
+		position: relative;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 50%;
+	  }
+	  
+	  .image img {
+		display: block;
+		
+		border: 5px solid rgb(255, 255, 255);
+		text-align: center;
+		border-radius: 5px;
+		
+	  }
+	  
+	  .image:hover img {
+		transform: rotate(5deg);
+		border-color: #333b(255, 255, 255);
+	  }
+	  
+	  
+	</style>
+	<div class="row">
+		<div class="column">
+			<div class="image">
+				<img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-damier-ebene-handbags--N41358_PM2_Front%20view.jpg" alt="bag?"width="300" height="300"/>
+			</div>
+		</div>
+	</div>
+
+	
 	
 	<form action="{{ url_for('add',m=m ) }}" method="post">
 		
@@ -139,32 +198,50 @@
 			<option value="medium">Medium</option>
 			
 			<option value="large">Large</option>
-			
+		
 		</select>
 		
         <label for="color">Color:</label>
 
         <select id="color" name="color">
 			
-          <option value="blue">blue</option>
+			{% for item in color %}
+				<option value="{{ color }}">{{ color }}</option>
+		 	{% endfor %}
           
-          <option value="gray">gray</option>
-          
-          <option value="white">white</option>
-          
-        </select>
+			 <head>
+<style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+<pre><h5> {{ price }} T </h5> </pre>
+<pre><h5> {{ dollars }} $ </h5></pre>
 
-		<select id="quantity" name="quantity">
-			
-			<option value="small">1</option>
-			
-			<option value="medium">2</option>
-			
-			<option value="large">3</option>
-			
-		</select>
 
-        <input type="submit" onclick="myFunction()" value="Add to Cart">
+
+<input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
+<button class="button" onclick="document.getElementById('quantity').stepDown()"><img src="https://icons.veryicon.com/png/o/miscellaneous/unicons/minus-28.png" alt="-"width="20" height="20"></button>
+<button class="button" onclick="document.getElementById('quantity').stepUp()"><img src="https://static.vecteezy.com/system/resources/previews/009/344/473/original/plus-sign-transparent-free-png.png" alt="+" width="20" height="20"></button>
+</body></form>
+		
+		
+		
+		
+		
+		
+        <br><input type="submit" onclick="myFunction()" value="Add to Cart"><br>
 		<script>
 		function myFunction() {
 		  alert("{{m}}added to cart" );
