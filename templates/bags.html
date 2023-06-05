@@ -103,23 +103,73 @@
       </div>
     </div>
     </nav>
-  <div class="box">
-    <h1>bags</h1></div>
-  <u1>
-  {%for bag in bags%}
-  <br><div class="'box_kala">
-  
-  <div class="frame">
-    <form method = 'POST' action= '/bdetails'><input type='hidden' name= 'bag' value='{{ bag }}'><a href="/details">more information</a></form>
-  
+    <style>
+    .frame {
 
-  </div>
+      padding: 10px;
+      width: auto;
+      background-color: gray;
+      position: relative;
+      top: 0;
+      transition: top 0.5s ease-in-out;
+      border-radius: 5px
+    }
+
+    .frame:hover {
+      background-color: black;
+      top: -10px;
+      
+    
+    }
+    .frame2 {
+
+    padding: 10px;
+    width: auto;
+    background-color: gray;
+    position: relative;
+    top: 0;
+    transition: top 0.5s ease-in-out;
+    border-radius: 5px
+  } 
+
+    .frame2:hover {
+    background-color: black;
+    top: -10px;
+    
+
+  }
+    .button {
+     padding: 10px;
+     width : auto;
+     font-family: "jubilat", sans-serif;
+     background-color: gray
+     
+     
+     
+
+   
+  }
+  </style>
+<div class="frame">
+  <h1>bags</h1></div>
+  {%for bag in bags%}
+
+  <br><br>
+
+  <div class="frame2">
+  <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm--M40995_PM2_Front%20view.png?wid=656&hei=656" alt={{bag[1]}} width="100" height="100"></body></div>  
+  <br>
+  
+  <div class="button">
+    <a href="{{ url_for('details',m='bag1') }}">more information</p>
+  
   </div>
   <div class="lined"></div>
   {% endfor %}
-  </u1>
+
 
 </body>
- </html>
+</html>
 
   
+    
