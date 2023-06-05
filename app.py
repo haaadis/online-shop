@@ -1,9 +1,12 @@
 # Import all important libraries
 from flask import Flask, redirect, url_for, request, render_template ,session
+from flask_mysqldb import MySQL
+import MySQLdb.cursors
 import re
 import sqlite3
 import random
-
+import json
+import requests
 app = Flask(__name__)
 app.secret_key = "secret key" 
 
