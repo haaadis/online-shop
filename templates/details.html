@@ -108,7 +108,7 @@
 			<ul class="nav navbar-nav">
 			  <li><a href="{{ url_for('home') }}">Home</a></li>
 			  <li class="active"><a href="{{ url_for('bags') }}">BAGS</a></li>
-			  <li><a href="#">Deals</a></li>
+			  <li><a href="#">SHOES</a></li>
 			 
 			  
 			</ul>
@@ -139,6 +139,7 @@
 /* Create three equal columns that sits next to each other */
 	  .column {
   		flex: 33.33%;
+		box-sizing: border-box;
  		padding: 5px;
 	  }
 	  .blank {
@@ -164,7 +165,7 @@
 	  .image img {
 		display: block;
 		
-		border: 5px solid rgb(255, 255, 255);
+		border: 5px solid #333b(255, 255, 255);
 		text-align: center;
 		border-radius: 5px;
 		
@@ -177,13 +178,67 @@
 	  
 	  
 	</style>
-	<div class="row">
-		<div class="column">
-			<div class="image">
-				<img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-damier-ebene-handbags--N41358_PM2_Front%20view.jpg" alt="bag?"width="300" height="300"/>
-			</div>
+	</style>
+	<head>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	  <style>
+	  .container {
+		position: relative;
+		width: 100%;
+		max-width: 400px;
+	  }
+	  
+	  .image {
+		display: block;
+		width: 100%;
+		height: auto;
+		margin: auto;
+		width: 50%;
+		 
+		padding: 10px;
+	  }
+	  
+	  .overlay {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 100%;
+		width: 100%;
+		opacity: 0;
+		transition: .3s ease;
+		
+	  }
+	  
+	  .container:hover .overlay {
+		opacity: 1;
+	  }
+	  
+	  .icon {
+	
+		font-size: 100px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		-ms-transform: translate(-50%, -50%);
+		text-align: center;
+	  }
+	  
+	 
+	  </style>
+	  </head>
+	  <body>
+	
+		<div class="container">
+		  <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt="Avatar" class="image">
+		  <div class="overlay">
+		 
+		  </div>
 		</div>
-	</div>
+
 
 	
 	
@@ -226,8 +281,8 @@
 </style>
 </head>
 <body>
-<pre><h5> {{ price }} T </h5> </pre>
-<pre><h5> {{ dollars }} $ </h5></pre>
+<pre><h5>  price  T </h5> </pre>
+<pre><h5>  dollars  $ </h5></pre>
 
 
 
@@ -235,13 +290,12 @@
 <button class="button" onclick="document.getElementById('quantity').stepDown()"><img src="https://icons.veryicon.com/png/o/miscellaneous/unicons/minus-28.png" alt="-"width="20" height="20"></button>
 <button class="button" onclick="document.getElementById('quantity').stepUp()"><img src="https://static.vecteezy.com/system/resources/previews/009/344/473/original/plus-sign-transparent-free-png.png" alt="+" width="20" height="20"></button>
 </body></form>
+
 		
 		
 		
-		
-		
-		
-        <br><input type="submit" onclick="myFunction()" value="Add to Cart"><br>
+		<div class="image">
+        <input type="submit" onclick="myFunction()" value="Add to Cart"></div>
 		<script>
 		function myFunction() {
 		  alert("{{m}}added to cart" );
@@ -250,4 +304,44 @@
     </form>
 
 </body>
-</html>
+<head>
+	<style>
+	.emoji {
+	  font-size: 50px;
+	  cursor: pointer;
+	  position: relative;
+	  display: block;
+      margin-left: auto;
+	  margin-right: auto;
+	  width: 50%;
+	}
+	
+	
+	
+	
+	.emoji.active:before {
+	  content: "\1F60D";
+	}
+	
+	.emoji:before {
+	  content: "\1F615";
+	}
+	</style>
+	</head>
+	<body>
+		<div class="row">
+			<div class="column">
+				<p class="image" >how do you think?</p>
+				<span class="emoji"></span>
+			</div>
+		</div>
+			
+	
+	<script>
+	var emoji = document.querySelector('.emoji');
+	emoji.addEventListener('click', function() {
+	  emoji.classList.toggle('active');
+	});
+	</script>
+	
+	</body>
