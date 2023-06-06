@@ -14,7 +14,7 @@ admin = {'kunal@gmail.com': '1234'}   #admin email and password
 orders=[]
 @app.route('/')
 def home():
-	return render_template('home.html')
+	return render_template('home.html',orders=orders)
 @app.route('/<m>')
 def details(m):
     conn = sqlite3.connect('products.db')
@@ -132,6 +132,15 @@ def resetpassword():
 	elif request.method == 'POST':
 		message = 'Please fill out the form !'			
 	return render_template('resetpassword.html', message=message)
+
+			   
+def check_quantity(quantity,stock): 
+            if stock=='UNAVAILABLE':
+                return False
+            elif (quantity > int(stock)) :
+                return False
+            else:
+                 return True			   
 			   
 @app.route('/cart')
 def cart():
@@ -141,12 +150,21 @@ def cart():
 
 @app.route('/add<m>', methods=['POST'])
 def add(m):
-    description = request.form.get('color') +','+ request.form.get('size')
-    quantity = int(request.form.get('quantity'))
-    price = 1000
-    orders.append([m,description,quantity,price])
-    message = m+'added to cart' 
-    return redirect(url_for('details',m=m,message=message))
+	conn = sqlite3.connect('products.db')
+	cursor = conn.cursor()
+	stock=cursor.execute("SELECT stock FROM products WHERE name=?", (m,)).fetchone()
+	if request.method == 'POST' and 'color' in request.form  and 'size' in request.form:
+		quantity = int(request.form.get('quantity'))
+		description = request.form.get('color') +','+ request.form.get('size')
+		price = cursor.execute("SELECT price FROM products WHERE name=?", (m,)).fetchone()
+		if check_quantity(quantity,stock):
+			orders.append([m,description,quantity,price])
+			message = m+'added to cart'
+		else:
+			message='not available in that quantity' 
+	else:
+		message = 'choose some variants'
+	return redirect(url_for('details',m=m,message=message))
     
 @app.route('/delete/<int:index>')
 def delete(index):
