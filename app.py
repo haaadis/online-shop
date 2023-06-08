@@ -175,9 +175,59 @@ def delete(index):
 def empty_cart():
 	orders.clear()
 	return redirect(url_for('home'))
-
+			   
+@app.route('/update_qnt/<int:index>')
+def update_qnt(index):
+    quantity = request.form.get('quantity')
+    orders[index][2]=quantity
+    return redirect(url_for('cart'))
 			  
+#get information of user after shoppingcart
+@app.route('/info')
+def info():
+	firstname = request.form['firstname']
+	lastname = request.form['lastname']
+	phone = request.form['phone']
+	address = request.form['address']
+	zipcode = request.form['zipcode']
+	conn=sqlite3.connect('.db')
+	c=conn.cursor()
+	c.execute("SELECT DISTINCT country FROM  ")
+	country = c.fetchall()
+	selected_country=request.form.get["country"]
+	c.execute("SELECT DISTINCT FROM  WHERE country=?",(selected_country,))
+	states=c.fetchall()
+	selected_state=request.form.get["state"]
+	c.execute("SELECT FROM cities WHERE state=?",(selected_state,))
+	cities=c.fetchall()
+	return render_template('info.html',country=country,states=states,cities=cities)
 
+#function to update stocks after payment
+def update_stocks(x):
+	try:
+		conn = sqlite3.connect('products.db')
+		cursor = conn.cursor()
+		y=cursor.execute("SELECT stock FROM products WHERE name=?", (x[0],)).fetchone() - x[2]
+		cursor.execute("UPDATE products SET stock=? WHERE name = ?",(y,x[0],))
+		cursor.execute("UPDATE products SET stock=? WHERE stock = ?",('UNAVAILABLE',0,))
+		conn.commit()
+	finally:
+		conn.close()
+
+@app.route('/checkout')
+def checkout():
+	if len(request.form['cardnumber'])==16:
+		message='your orders'
+		for i in orders:
+			update_stocks(i)
+		return redirect('home',message=message)
+	elif len(request.form['cardnumber'])!=16:
+		message='Invalid card.no'
+		return render_template('checkout.html',message=message)
+	return render_template('checkout.html')
+			   
+			   
+			   
 class UploadFileForm(FlaskForm):
     file = FileField('File', validators= [InputRequired()])
     submit = SubmitField('Upload File')
