@@ -1,5 +1,5 @@
 # Import all important libraries
-from flask import Flask, redirect, url_for, request, render_template ,session
+from flask import Flask, redirect, url_for, request, render_template ,session,flash
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
@@ -7,8 +7,15 @@ import sqlite3
 import random
 import json
 import requests
+import os
+from flask_wtf import *
+from wtforms import *
+from werkzeug.utils import *
+from wtforms.validators import InputRequired
+
 app = Flask(__name__)
 app.secret_key = "secret key" 
+app.config['UPLOAD-FOLDER']='static/images/image_products'
 
 admin = {'kunal@gmail.com': '1234'}   #admin email and password
 orders=[]
@@ -232,10 +239,11 @@ class UploadFileForm(FlaskForm):
     file = FileField('File', validators= [InputRequired()])
     submit = SubmitField('Upload File')
 
-@app.route('/add_product')
+@app.route('/add_product', methods=['GET', 'POST'])
 def add_product():
     form = UploadFileForm()
-    if form.validate_on_submit() and request.method == 'POST' and 'name' in request.form and 'size' in request.form and 'color' in request.form and 'price' in request.form and 'stock' in request.form:
+    #if form.validate_on_submit() and request.method == 'POST' and 'name' in request.form and 'size' in request.form and 'color' in request.form and 'price' in request.form and 'stock' in request.form:
+    if request.method == 'POST':
         name = request.form['productName']
         code=str(random.randint(10000,100000))+chr(random.randint(ord('a'), ord('z')))
         stock =  request.form['stock']
@@ -246,17 +254,15 @@ def add_product():
         color = str(request.form['productcolor'])
         price = request.form['price']
         category = request.form['category']
-        discount = request.form['discount']
         conn = sqlite3.connect('products.db')
         cursor = conn.cursor()
-        params = (name,code,image_address,stock, size, color,price,category,discount)
-        cursor.execute("INSERT INTO products VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
+        cursor.execute("insert into products (id,name,code,image_address,stock, size, color,price,category) values (NULL,? ,?, ?, ?, ?, ?, ?, ?)", [name,code,image_address,stock, size, color,price,category])
         conn.commit()
-        conn.close()
         message = 'File has been uploaded.'
     else:
         message = "You need to fill the form!"
     return render_template('add_item.html', message=message, form=form)
+
 
 @app.route('/delete_product')
 def delete_product(x):
