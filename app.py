@@ -175,3 +175,52 @@ def delete(index):
 def empty_cart():
 	orders.clear()
 	return redirect(url_for('home'))
+
+			   
+def convertToBinaryData(filename):
+    # Convert digital data to binary format
+    with open(filename, 'rb') as file:
+        binaryData = file.read()
+    return binaryData
+
+
+class UploadFileForm(FlaskForm):
+    file = FileField('File', validators= [InputRequired()])
+    submit = SubmitField('Upload File')
+
+@app.route('/add_product')
+def add_product():
+    form = UploadFileForm()
+    if form.validate_on_submit() and request.method == 'POST' and 'name' in request.form and 'size' in request.form and 'color' in request.form and 'price' in request.form and 'stock' in request.form:
+        name = request.form['productName']
+        code=str(random.randint(10000,100000))+chr(random.randint(ord('a'), ord('z')))
+        stock =  request.form['stock']
+        file = form.file.data
+        file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD-FOLDER'],secure_filename(file.filename)))
+        image =request.files['file']   
+        image = convertToBinaryData(image)
+        image_address = 'static/images/image_products/'+str(file.filename)
+        size = str(request.form['productsize'])
+        color = str(request.form['productcolor'])
+        price = request.form['price']
+        category = request.form.get('category')
+        discount = request.form['discount']
+        conn = sqlite3.connect('products.db')
+        cursor = conn.cursor()
+        params = (name,code,image_address,stock, size, color,price,category,discount)
+        cursor.execute("INSERT INTO products VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?)", params)
+        conn.commit()
+        conn.close()
+        message = 'File has been uploaded.'
+    else:
+        message = "You need to fill the form!"
+    return render_template('add_item.html', message=message, form=form)
+
+@app.route('/delete_product')
+def delete_product(x):
+    conn = sqlite3.connect('products.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM products WHERE name=? AND code=?",(x[1],x[2],))
+    conn.commit()
+    conn.close()
+    return redirect('products',x=x[7])
