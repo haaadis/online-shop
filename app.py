@@ -176,13 +176,7 @@ def empty_cart():
 	orders.clear()
 	return redirect(url_for('home'))
 
-			   
-def convertToBinaryData(filename):
-    # Convert digital data to binary format
-    with open(filename, 'rb') as file:
-        binaryData = file.read()
-    return binaryData
-
+			  
 
 class UploadFileForm(FlaskForm):
     file = FileField('File', validators= [InputRequired()])
@@ -197,13 +191,11 @@ def add_product():
         stock =  request.form['stock']
         file = form.file.data
         file.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD-FOLDER'],secure_filename(file.filename)))
-        image =request.files['file']   
-        image = convertToBinaryData(image)
         image_address = 'static/images/image_products/'+str(file.filename)
         size = str(request.form['productsize'])
         color = str(request.form['productcolor'])
         price = request.form['price']
-        category = request.form.get('category')
+        category = request.form['category']
         discount = request.form['discount']
         conn = sqlite3.connect('products.db')
         cursor = conn.cursor()
