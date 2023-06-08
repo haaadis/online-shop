@@ -7,22 +7,20 @@
   <title>Add Product</title>
 </head>
 <body>
+  <div>{{message}}</div>
   <form method="POST" action="/add_product" enctype="multipart/form-data">
-    
-    <label>Product ID:</label><br>
-    <input type="text" placeholder="12345j" name="productId" /><br>
 
   
     <label>Name:</label><br>
-    <input type="text" placeholder="Bag2" name="name" /><br>
+    <input type="text" placeholder="Bag2" name="productName" /><br>
      
     
     <label>Size:</label><br>
-    <input type="text" placeholder="L" name="size"><br>
+    <input type="text" placeholder="L" name="productsize"><br>
 
   
     <label>Color:</label><br>
-    <input type="text" placeholder="Brown" name="color"><br>
+    <input type="text" placeholder="Brown" name="productcolor"><br>
 
   
     <label>Price(in Tomans):</label><br>
@@ -30,16 +28,21 @@
   
   
     <label>Quantity:</label><br>
-    <input type="number" placeholder="2" name="quantity"><br>
+    <input type="number" placeholder="2" name="stock"><br>
 
 
     <label>Category:</label><br>
-    <input type="text" placeholder="Bags" name="category"><br><br><br>
+    <input type="text" placeholder="Bags" name="category"><br>
+    
+    
+    <label>Discount:</label><br>
+    <input type="text" placeholder="12345" name="discount"><br><br><br>
 
 
-</select> 
+
     {{form.hidden_tag()}}
     {{form.file()}}
+    {{form.submit()}}
   
   <br><br>
 
@@ -47,4 +50,3 @@
   </form>
 </body>
 </html>
-
