@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Product</title>
+</head>
+<body>
+  <form method="POST" action="/add_product" enctype="multipart/form-data">
+    
+    <label>Product ID:</label><br>
+    <input type="text" placeholder="12345j" name="productId" /><br>
+
+  
+    <label>Name:</label><br>
+    <input type="text" placeholder="Bag2" name="name" /><br>
+     
+    
+    <label>Size:</label><br>
+    <input type="text" placeholder="L" name="size"><br>
+
+  
+    <label>Color:</label><br>
+    <input type="text" placeholder="Brown" name="color"><br>
+
+  
+    <label>Price(in Tomans):</label><br>
+    <input type="number" placeholder="1350" name="price"><br>
+  
+  
+    <label>Quantity:</label><br>
+    <input type="number" placeholder="2" name="quantity"><br>
+
+
+    <label>Category:</label><br>
+    <input type="text" placeholder="Bags" name="category"><br><br><br>
+
+
+</select> 
+    {{form.hidden_tag()}}
+    {{form.file()}}
+  
+  <br><br>
+
+  <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
+
