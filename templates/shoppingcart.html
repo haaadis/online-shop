@@ -134,7 +134,7 @@ li a:hover:not(.active) {
 	{% else: %}
 	<li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
 	{% endif %}
-	<li class="active"  style="float:right"><a href="{{ url_for('cart') }}">cart<sup>{{orders|length}}</sup></a></li>	
+	<li class="active"  style="float:right"><a href="{{ url_for('cart') }}"><i class="fa fa-shopping-cart" style="font-size:15px;color:white"></i><sup>{{orders|length}}</sup></a></li>	
 </div>
   </ul>
 
