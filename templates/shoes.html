@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>shop</title>
-
+<!--style -->	
 	
 	<style>
 	   .texx{
@@ -77,27 +76,28 @@ li a:hover:not(.active) {
 
   <body>
 <nav>
-
+<!--navbar va in ke batavajoh be karbar chi nshon dade she -->
 	<div class="texx">
-	  <h1><centre>B&S shop</centre></h1>      
+	  <h1><centre>B&S SHOP</centre></h1>      
 	  <p><centre>trends, bags & shoes</centre></p>
 	</div>
   </div>
   <ul>
-  	<li><a href="{{ url_for('home') }}">BS</a></li>
-  	<li><a  href="{{ url_for('bags') }}">BAGS</a></li>
+  	<li><a >BS</a></li>
+   <li><a  href="{{ url_for('home') }}">Home</a></li>
+  	<li><a href="{{ url_for('bags') }}">BAGS</a></li>
  	<li><a class="active" href="{{ url_for('shoes') }}">SHOES</a></li>
-	{%if adminlog==True%}
-	<li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
-	{% endif %}
-	{%if log==True%}
-	<li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
-	{% else: %}
-	<li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
-	{% endif %}
-	<li style="float:right"><a href="{{ url_for('cart') }}"><i class="fa fa-shopping-cart" style="font-size:15px;color:white"></i><sup>{{orders|length}}</sup></a></li>	
+    {%if session['admin']%}
+    <li style="float:right"><a href="{{ url_for('add_product') }}">add producr</a></li>
+    {% endif %}
+    {%if session['loggedin']%}
+    <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
+    {% else: %}
+    <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
+    {% endif %}
+    <li style="float:right"><a href="{{ url_for('cart') }}"><img src='https://cdn-icons-png.flaticon.com/512/3900/3900101.png' width="20px" height="20px"><sup>{{orders|length}}</sup></a></li>		
 </div>
-    </ul>
+  </ul>
 <head>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
