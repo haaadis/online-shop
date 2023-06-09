@@ -185,19 +185,21 @@
 		   </div>
 		   <ul>
 			   <li><a  href="{{ url_for('home') }}">BS</a></li>
+			   <li><a  href="{{ url_for('home') }}">HOME</a></li>
 			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
-			  <li><a href="#">SHOES</a></li>
-			 {%if adminlog==True%}
-			 <li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
+			  <li><a href="{{ url_for('shoes') }}">SHOES</a></li>
+			 {%if session['adminlog']%}
+			 <li style="float:left"><a href="{{ url_for('add_product') }}">add product</a></li>
+			 <li style="float:left"><a href="{{ url_for('add_product') }}">delete product</a></li> 
 			 {% endif %}
 		 
 		 
-			 {%if log==True%}
+			 {%if session['loggedin']%}
 			 <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
 			 {% else: %}
 			 <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
 			 {% endif %}
-			 <li style="float:right"><a href="{{ url_for('cart') }}">cart<sup>{{orders|length}}</sup></a></li>
+			 <li style="float:right"><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span><sup>{{orders|length}}</sup></a></li>
 			 
 			 
 		 </div>
@@ -210,6 +212,7 @@
 		<div  class="product-image"><img  src="{{product[3]}}" alt={{product[1]}} width="250px"></div>
 	<form action="{{ url_for('add',m=m ) }}" method="post">
 		
+		<p><strong>code:</strong> {{product[2]}}</p>
 		<p><strong>price:</strong> {{product[6]}} T - {{dollar}} $</p>
 	
 		<label for="size">Size:</label>		
