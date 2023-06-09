@@ -169,9 +169,20 @@ def check_quantity(quantity,stock):
 			   
 @app.route('/cart')
 def cart():
+    url = 'https://api.exchangerate-api.com/v4/latest/IRR'
+    response = requests.get(url)
+    data = response.json()
+    rate = data['rates']['USD']
     total_price=sum([x[3]*x[2] for x in orders])
-    tax =sum([x[3]*x[2] for x in orders])*0.09 
-    return render_template('shoppingcart.html', orders=orders,tax=tax,total_price=total_price,total=tax+total_price,enumerate=enumerate)
+    total_priced=total_price*rate
+    total_price=str(tatol_price)+'/'+str(total_priced)
+    tax =sum([x[3]*x[2] for x in orders])*0.09
+    taxd=tax*rate
+    tax=str(tax)+'/'+str(tax)
+    total = tax+20.000+total_price
+    totald = total*rate
+    total=str(tatol)+'/'+str(totald)
+    return render_template('shoppingcart.html', orders=orders,tax=tax,total_price=total_price,total=total,enumerate=enumerate)
 
 @app.route('/add<m>', methods=['POST'])
 def add(m):
