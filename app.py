@@ -22,28 +22,46 @@ orders=[]
 @app.route('/')
 def home():
 	return render_template('home.html',orders=orders)
-@app.route('/<m>')
-def details(m):
-    conn = sqlite3.connect('products.db')
-    c = conn.cursor()
-    
-    price=c.execute("SELECT price  FROM products WHERE name=?", (m,)).fetchone()
-    color=c.execute("SELECT color  FROM products WHERE name=?", (m,)).fetchone()
-    name=c.execute("SELECT name  FROM products WHERE name=?", (m,)).fetchone()
-    size=c.execute("SELECT size  FROM products WHERE name=?", (m,)).fetchone()
-    category=c.execute("SELECT category  FROM products WHERE name=?", (m,)).fetchone()
-    tomans=price[0]
-    url = f'https://api.exchangerate-api.com/v4/latest/IRR'
+def split(x):
+    	return x.split(",")	
+@app.route('/bags')
+def bags():
+    url = 'https://api.exchangerate-api.com/v4/latest/IRR'
     response = requests.get(url)
     data = response.json()
-    dollars = float(price[0])*data['rates']['USD']
-    result = {'dollars': dollars}
+    rate = data['rates']['USD']
+    try:
+        conn = sqlite3.connect('products.db')
+        cursor= conn.cursor()
+        cursor.execute("SELECT * FROM products WHERE category='bags'")
+        bags = cursor.fetchall()
+        l=[]
+        for t in bags:
+             l.append(round((t[6]*rate),2))
+        
+        n = list(range(0,len(bags))) 
+        return render_template('bags.html',  bags=bags ,L=l, n=n)
+    finally:
+        cursor.close()
+        conn.close()
+        
 
-
-
-    
-
-    return render_template('details.html', m=m ,enumerate=enumerate, p
+@app.route('/<m>')
+def details(m):
+    url = 'https://api.exchangerate-api.com/v4/latest/IRR'
+    response = requests.get(url)
+    data = response.json()
+    rate = data['rates']['USD']
+    try:
+        conn =sqlite3.connect('products.db')
+        cursor  = conn.cursor()
+        cursor.execute("SELECT * FROM products WHERE name= ?",(str(m),))
+        product = cursor.fetchone()
+        dollar=round((product[6]*rate),2)
+        return render_template ('details.html', m=m, product=product , orders=orders,split=split,dollar=dollar)
+    finally:
+        conn.close()
+ 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
