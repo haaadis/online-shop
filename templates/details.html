@@ -183,22 +183,23 @@
 			   <p><centre>trendy...</centre></p>
 			 </div>
 		   </div>
-		   <ul>
-			   <li><a>BS</a></li>
-			   <li><a  href="{{ url_for('home') }}">Home</a></li>
-			   <li><a href="{{ url_for('bags') }}">BAGS</a></li>
-			  <li><a href="{{ url_for('shoes')}}">SHOES</a></li>
-			  {%if session['admin']%}
-			  <li style="float:right"><a href="{{ url_for('add_product') }}">add producr</a></li>
-			  {% endif %}
-			  {%if session['loggedin']%}
-			  <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
-			  {% else: %}
-			  <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
-			  {% endif %}
-			  <li style="float:right"><a href="{{ url_for('cart') }}"><img src='https://cdn-icons-png.flaticon.com/512/3900/3900101.png' width="20px" height="20px"><sup>{{orders|length}}</sup></a></li>	
-			 
-			 
+  		   <ul>
+			   <li><a  href="{{ url_for('home') }}">BS</a></li>
+			   <li><a  href="{{ url_for('home') }}">HOME</a></li>
+			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
+			  <li><a href="{{ url_for('shoes') }}">SHOES</a></li>
+			 {%if session['adminlog']%}
+			 <li style="float:left"><a href="{{ url_for('add_product') }}">add product</a></li>
+			 <li style="float:left"><a href="{{ url_for('add_product') }}">delete product</a></li> 
+			 {% endif %}
+		 
+		 
+			 {%if session['loggedin']%}
+			 <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
+			 {% else: %}
+			 <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
+			 {% endif %}
+			 <li style="float:right"><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span><sup>{{orders|length}}</sup></a></li>
 		 </div>
 		   </ul>
 	
