@@ -122,21 +122,25 @@ li a:hover:not(.active) {
 	  <p><centre>trends, bags & shoes</centre></p>
 	</div>
   </div>
-  <ul>
-  	<li><a href="{{ url_for('home') }}">BS</a></li>
-  	<li><a href="{{ url_for('bags') }}">BAGS</a></li>
- 	<li><a href="{{ url_for('shoes') }}">SHOES</a></li>
-	{%if adminlog==True%}
-	<li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
-	{% endif %}
-	{%if log==True%}
-	<li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
-	{% else: %}
-	<li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
-	{% endif %}
-	<li class="active"  style="float:right"><a href="{{ url_for('cart') }}"><i class="fa fa-shopping-cart" style="font-size:15px;color:white"></i><sup>{{orders|length}}</sup></a></li>	
-</div>
-  </ul>
+   		   <ul>
+			   <li><a  href="{{ url_for('home') }}">BS</a></li>
+			   <li><a  href="{{ url_for('home') }}">HOME</a></li>
+			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
+			  <li><a href="{{ url_for('shoes') }}">SHOES</a></li>
+			 {%if session['adminlog']%}
+			 <li style="float:left"><a href="{{ url_for('add_product') }}">add product</a></li>
+			 <li style="float:left"><a href="{{ url_for('delete_product') }}">delete product</a></li> 
+			 {% endif %}
+		 
+		 
+			 {%if session['loggedin']%}
+			 <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
+			 {% else: %}
+			 <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
+			 {% endif %}
+			 <li style="float:right"><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span><sup>{{orders|length}}</sup></a></li>	 
+		 </div>
+		   </ul>
 
 <div class="container bootstrap snippets bootdey">
     <div class="col-md-9 col-sm-8 content">
