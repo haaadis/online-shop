@@ -127,7 +127,7 @@ li a:hover:not(.active) {
 			   <li><a  href="{{ url_for('home') }}">HOME</a></li>
 			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
 			  <li><a href="{{ url_for('shoes') }}">SHOES</a></li>
-			 {%if session['adminlog']%}
+			 {%if session['admin']%}
 			 <li style="float:left"><a href="{{ url_for('add_product') }}">add product</a></li>
 			 <li style="float:left"><a href="{{ url_for('delete_product') }}">delete product</a></li> 
 			 {% endif %}
