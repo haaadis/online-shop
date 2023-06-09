@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>shop</title>
+<!--style -->	
 	
-<!-- style hayi ke niaz darim	-->
 	<style>
 	   .texx{
     text-align: center;
@@ -75,33 +74,30 @@ li a:hover:not(.active) {
 	</style>
   </head>
 
-<body>
+  <body>
 <nav>
-<!--ezave kardan navbar-->
+<!--navbar va in ke batavajoh be karbar chi nshon dade she -->
 	<div class="texx">
-	  <h1><centre>B&S shop</centre></h1>      
+	  <h1><centre>B&S SHOP</centre></h1>      
 	  <p><centre>trends, bags & shoes</centre></p>
 	</div>
   </div>
-		   <ul>
-			   <li><a  href="{{ url_for('home') }}">BS</a></li>
-			   <li><a  href="{{ url_for('home') }}">HOME</a></li>
-			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
-			  <li><a href="{{ url_for('shoes') }}">SHOES</a></li>
-			 {%if session['adminlog']%}
-			 <li style="float:left"><a href="{{ url_for('add_product') }}">add product</a></li>
-			 <li style="float:left"><a href="{{ url_for('add_product') }}">delete product</a></li> 
-			 {% endif %}
-		 
-		 
-			 {%if session['loggedin']%}
-			 <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
-			 {% else: %}
-			 <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
-			 {% endif %}
-			 <li style="float:right"><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span><sup>{{orders|length}}</sup></a></li>
-		 </div>
-		   </ul>
+  <ul>
+   <li><a >BS</a></li>
+   <li><a  href="{{ url_for('home') }}">Home</a></li>
+  	<li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
+ 	<li><a href="{{ url_for('shoes') }}">SHOES</a></li>
+	{%if adminlog==True%}
+	<li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
+	{% endif %}
+	{%if log==True%}
+	<li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
+	{% else: %}
+	<li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
+	{% endif %}
+	<li style="float:right"><a href="{{ url_for('cart') }}"><img src='https://cdn-icons-png.flaticon.com/512/3900/3900101.png' width="20px" height="20px"><sup>{{orders|length}}</sup></a></li>	
+</div>
+  </ul>
 <head>
    <!-- style-->
   <style>
@@ -234,7 +230,7 @@ body{
  
 
 </head>
-<body onscroll="Go_Up();" id="Top">
+
 <div class="container">
    
    <div class="products-container">
@@ -255,21 +251,6 @@ body{
    
 </div>
       
-   <a href="" id="MyButton">
-    <img src="/static/images/up-icon.png" width="50">
-   </a>
-   
-   <script>  
-   function Go_Up(){
-    var Btn_Up = document.getElementById("MyButton");
-    if( window.pageYOffset > 60 ){
-     Btn_Up.classList.add("show")
-    }else{
-     Btn_Up.classList.remove("show");
-    }
-   }  
-   </script>
-	
-	</body>
+
 </body>
 </html>
