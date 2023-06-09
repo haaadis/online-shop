@@ -21,7 +21,20 @@ admin = {'kunal@gmail.com': '1234'}   #admin email and password
 orders=[]
 @app.route('/')
 def home():
-	return render_template('home.html',orders=orders)
+		try:
+		conn = sqlite3.connect('products.db')
+		cursor = conn.cursor()
+		cursor.execute("SELECT * FROM products WHERE discount IS NOT NULL")
+		p1 = cursor.fetchmany(4)
+		cursor.execute("SELECT * FROM products ORDER BY price")
+		p2 = cursor.fetchmany(4)
+		p11=[]
+
+		for i in range(4):
+			p11.append((p1[i],(100-p1[i][9])*p1[i][7]/100))
+		return render_template('home.html',productd=p11, orders=orders,productc=p2)
+	finally:
+		conn.close()
 def split(x):
     	return x.split(",")	
 @app.route('/bags')
@@ -175,13 +188,13 @@ def cart():
     rate = data['rates']['USD']
     total_price=sum([x[3]*x[2] for x in orders])
     total_priced=total_price*rate
-    total_price=str(tatol_price)+'/'+str(total_priced)
+    total_price=str(total_price)+'/'+str(total_priced)
     tax =sum([x[3]*x[2] for x in orders])*0.09
     taxd=tax*rate
-    tax=str(tax)+'/'+str(tax)
+    tax=str(tax)+'/'+str(taxd)
     total = tax+20.000+total_price
-    totald = total*rate
-    total=str(tatol)+'/'+str(totald)
+    totald = taxd+total_priced+1000.000
+    total=str(total)+'/'+str(totald)
     return render_template('shoppingcart.html', orders=orders,tax=tax,total_price=total_price,total=total,enumerate=enumerate)
 
 @app.route('/add<m>', methods=['POST'])
@@ -218,26 +231,6 @@ def update_qnt(index):
     orders[index][2]=quantity
     return redirect(url_for('cart'))
 			  
-#get information of user after shoppingcart
-@app.route('/info')
-def info():
-	firstname = request.form['firstname']
-	lastname = request.form['lastname']
-	phone = request.form['phone']
-	address = request.form['address']
-	zipcode = request.form['zipcode']
-	conn=sqlite3.connect('.db')
-	c=conn.cursor()
-	c.execute("SELECT DISTINCT country FROM  ")
-	country = c.fetchall()
-	selected_country=request.form.get["country"]
-	c.execute("SELECT DISTINCT FROM  WHERE country=?",(selected_country,))
-	states=c.fetchall()
-	selected_state=request.form.get["state"]
-	c.execute("SELECT FROM cities WHERE state=?",(selected_state,))
-	cities=c.fetchall()
-	return render_template('info.html',country=country,states=states,cities=cities)
-
 #function to update stocks after payment
 def update_stocks(x):
 	try:
