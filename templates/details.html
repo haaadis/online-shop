@@ -1,347 +1,247 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>name</title>
+	<title>{{m}}</title>
 	<link rel ="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
 	<meta charset="utf-8">
-	<meta name="vhome bage" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-	<style>
-	 .navbar {
-	   margin-bottom: 50px;
-	   border-radius: 0;
-	 }
-	 
-	 .imgframe {
-    background:#D652D9;
-    padding:12px;
-    border:1px solid #999;
-
-	 }
-	  .jumbotron {
-	   margin-bottom: 0;
-	 }
-	
-	 
-	 footer {
-	   background-color: #6f8169;
-	   padding: 25px;
-	 }
-  
-		body {
-			font-family: Arial, sans-serif;
-			background-color: #f4f4f4;
-		}
-		h1 {
-			color: #333;
-			text-align: center;
-		}
-		form {
-			margin: 0 auto;
-			width: 50%;
-			padding: 20px;
-			background-color: #fff;
-			border-radius: 5px;
-			box-shadow: 0px 0px 10px #ccc;
-		}
-		label {
-			display: block;
-			margin-bottom: 10px;
-			font-weight: bold;
-		}
-		input[type="text"], select {
-			padding: 10px;
-			width: 100%;
-			border-radius: 5px;
-			border: none;
-			margin-bottom: 20px;
-		}
-		input[type="submit"] {
-			background-color: #333;
-			color: #fff;
-			padding: 10px 20px;
-			border-radius: 5px;
-			border: none;
-			cursor: pointer;
-		}
-		input[type="color"] {
-			margin-left: 10px;
-			height: 30px;
-			width: 30px;
-			border-radius: 50%;
-			border:none; 
-    		box-shadow:none; 
-    		outline:none; 
-    		padding:none; 
-    		margin:none; 
-    		background-color:none; 
-    		cursor:pointer; 
-    		appearance:none; 
-    		position:relative; 
-    		top:-2px; 
-    		left:-2px; 
-    		display:inline-block; 
-    		line-height:normal; 
-    		text-indent:-9999em; 
-    		text-transform:none; 
-    		text-shadow:none; 
-    		font-size:.5em
-		}
-
-		
-	
-	</style>
-<h1>{{ name }}</h1>
-</head>
-<body>
-	<nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-		  <div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>
-			  <span class="icon-bar"></span>                        
-			</button>
-			<a class="navbar-brand" href="{{ url_for('home') }}">BS</a>
-		  </div>
-		  <div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-			  <li><a href="{{ url_for('home') }}">Home</a></li>
-			  <li class="active"><a href="{{ url_for('bags') }}">BAGS</a></li>
-			  <li><a href="#">SHOES</a></li>
-			 
-			  
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-			  <li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-user"></span> login</a></li>
-			  <li><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart
-				<div class="pos-absolute d-flex ai-center jc-center bg-p-500 color-white right-0 bottom-0 styles_BaseLayoutMiniCart__cartCountBadge__bQVtD">
-				<span class="pos-relative text-caption-strong styles_BaseLayoutMiniCart__cartCountBadgeText__D84pJ">{{orders|length}}
-				</span>
-				</div>
-			  </a></li>
-			  
-			</ul>
-		  </div>
-		</div>
-	  </nav>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<style>
-	   * {
-  		box-sizing: border-box;
-	  }
-
-	  .row {
- 		display: flex;
-	  }
-
-/* Create three equal columns that sits next to each other */
-	  .column {
-  		flex: 33.33%;
-		box-sizing: border-box;
- 		padding: 5px;
-	  }
-	  .blank {
-		display : inline-block;
- 	    background-color: #333b;
-		border-radius: 5px;
- 		height: 1em;
-		width : 0.25em;
- 		margin-right: 0.5em
-		
-	
-	  }
-
-	  .image {
-		
-		position: relative;
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 50%;
-	  }
-	  
-	  .image img {
-		display: block;
-		
-		border: 5px solid #333b(255, 255, 255);
-		text-align: center;
-		border-radius: 5px;
-		
-	  }
-	  
-	  .image:hover img {
-		transform: rotate(5deg);
-		border-color: #333b(255, 255, 255);
-	  }
-	  
-	  
-	</style>
-	</style>
+	<meta name="vhome bage" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<!DOCTYPE html>
+	<html>
 	<head>
-	  <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	  <style>
-	  .container {
-		position: relative;
-		width: 100%;
-		max-width: 400px;
-	  }
-	  
-	  .image {
-		display: block;
-		width: 100%;
-		height: auto;
-		margin: auto;
-		width: 50%;
-		 
-		padding: 10px;
-	  }
-	  
-	  .overlay {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		height: 100%;
-		width: 100%;
-		opacity: 0;
-		transition: .3s ease;
 		
-	  }
-	  
-	  .container:hover .overlay {
-		opacity: 1;
-	  }
-	  
-	  .icon {
-	
-		font-size: 100px;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		-ms-transform: translate(-50%, -50%);
-		text-align: center;
-	  }
-	  
-	 
-	  </style>
-	  </head>
-	  <body>
-	
-		<div class="container">
-		  <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt="Avatar" class="image">
-		  <div class="overlay">
+		
+		<style>
+		 .navbar {
+		   margin-bottom: 50px;
+		   border-radius: 0;
+		 }
 		 
-		  </div>
-		</div>
-
+		 .imgframe {
+		background:#D652D9;
+		padding:12px;
+		border:1px solid #999;
+	
+		 }
+		  .jumbotron {
+		   margin-bottom: 0;
+		 }
+		
+		 
+		 footer {
+		   background-color: #6f8169;
+		   padding: 25px;
+		 }
+	  
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #f4f4f4;
+			}
+			h1 {
+				color: #333;
+				text-align: center;
+			}
+			form {
+				margin: 0 auto;
+				width: 50%;
+				padding: 20px;
+				background-color: #fff;
+				border-radius: 5px;
+				box-shadow: 0px 0px 10px #ccc;
+			}
+			label {
+				display: block;
+				margin-bottom: 10px;
+				font-weight: bold;
+			}
+			input[type="text"], select {
+				padding: 10px;
+				width: 100%;
+				border-radius: 5px;
+				border: none;
+				margin-bottom: 20px;
+			}
+			input[type="submit"] {
+				background-color: #333;
+				color: #fff;
+				padding: 10px 20px;
+				border-radius: 5px;
+				border: none;
+				cursor: pointer;
+			}
+			input[type="color"] {
+				margin-left: 10px;
+				height: 30px;
+				width: 30px;
+				border-radius: 50%;
+				border:none; 
+				box-shadow:none; 
+				outline:none; 
+				padding:none; 
+				margin:none; 
+				background-color:none; 
+				cursor:pointer; 
+				appearance:none; 
+				position:relative; 
+				top:-2px; 
+				left:-2px; 
+				display:inline-block; 
+				line-height:normal; 
+				text-indent:-9999em; 
+				text-transform:none; 
+				text-shadow:none; 
+				font-size:.5em
+			}
+	
+			
+		
+		</style>
+			<style>
+				.texx{
+			 text-align: center;
+			} 
+			.badge {
+		   padding-left: 9px;
+		   padding-right: 9px;
+		   -webkit-border-radius: 9px;
+		   -moz-border-radius: 9px;
+		   border-radius: 9px;
+		   text-align: right;
+		 }
+		 .label-warning [href],.badge-warning [href] {
+		   background-color: #c67605;
+		   text-align: right;
+		 }
+			  
+			   .navbar {
+				 margin-bottom: 50px;
+				 border-radius: 0;
+			   }
+			   
+			  
+				.jumbotron {
+				 margin-bottom: 0;
+			   }
+			  
+			   
+			   footer {
+				 background-color: #6f8169;
+				 padding: 25px;
+			   }
+			 </style>
+			 <style>
+				 ul {
+		   list-style-type: none;
+		   margin: 0;
+		   padding: 0;
+		   overflow: hidden;
+		   background-color: #333;
+		   border-radius:15px
+		 }
+		 
+		 li {
+		   float: left;
+		   border-right:1px solid #bbb;
+		 }
+		 
+		 li:last-child {
+		   border-right: none;
+		 }
+		 
+		 li a {
+		   display: block;
+		   color: white;
+		   text-align: center;
+		   padding: 14px 16px;
+		   text-decoration: none;
+		 }
+		 
+		 li a:hover:not(.active) {
+		   background-color: #111;
+		 }
+		 
+		 .active {
+		   background-color: #4e665d;
+		 }
+			 </style>
+		   </head>
+		 
+		   <body>
+			
+		 <nav>
+		 
+			 <div class="texx">
+			     
+			   <p><centre>trendy...</centre></p>
+			 </div>
+		   </div>
+		   <ul>
+			   <li><a  href="{{ url_for('home') }}">BS</a></li>
+			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
+			  <li><a href="#">SHOES</a></li>
+			 {%if adminlog==True%}
+			 <li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
+			 {% endif %}
+		 
+		 
+			 {%if log==True%}
+			 <li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
+			 {% else: %}
+			 <li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
+			 {% endif %}
+			 <li style="float:right"><a href="{{ url_for('cart') }}">cart<sup>{{orders|length}}</sup></a></li>
+			 
+			 
+		 </div>
+		   </ul>
+	
+	</head>
 
 	
-	
+	<div class="container">
+		<div  class="product-image"><img  src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt={{product[1]}} width="250px"></div>
 	<form action="{{ url_for('add',m=m ) }}" method="post">
 		
-		<label for="size">Size:</label>
-		
-		<select id="size" name="size">
-			
-			<option value="small">Small</option>
-			
-			<option value="medium">Medium</option>
-			
-			<option value="large">Large</option>
-		
+		<p><strong>price:</strong> {{product[6]}} T - {{dollar}} $</p>
+	
+		<label for="size">Size:</label>		
+		<select id="size" name="size">	
+			<option value='choose'>choose size</option>	
+			{%for size in split(product[4])%}
+			<option value={{size}}>{{size}}</option>	
+			{%endfor%}			
 		</select>
 		
         <label for="color">Color:</label>
-
         <select id="color" name="color">
-			
-			{% for item in color %}
-				<option value="{{ color }}">{{ color }}</option>
-		 	{% endfor %}
-          
-			 <head>
-<style>
-.button {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-</style>
-</head>
-<body>
-<pre><h5>  price  T </h5> </pre>
-<pre><h5>  dollars  $ </h5></pre>
+			<option value='choose'>choose color</option>	
+			{%for color in split(product[5])%}	
+            <option value="{{color}}">{{color}}</option> 
+			{%endfor%}           
+        </select>
 
+		<input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+  
+        {%if session['admin']%}
+        <a href="{{url_for('delete_product',x=product)}}" method="post">delete product</a>     
+        {% endif %} 
 
-
-<input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
-<button class="button" onclick="document.getElementById('quantity').stepDown()"><img src="https://icons.veryicon.com/png/o/miscellaneous/unicons/minus-28.png" alt="-"width="20" height="20"></button>
-<button class="button" onclick="document.getElementById('quantity').stepUp()"><img src="https://static.vecteezy.com/system/resources/previews/009/344/473/original/plus-sign-transparent-free-png.png" alt="+" width="20" height="20"></button>
-</body></form>
-
-		
-		
-		
-		<div class="image">
-        <input type="submit" onclick="myFunction()" value="Add to Cart"></div>
-		<script>
-		function myFunction() {
-		  alert("{{m}}added to cart" );
-		}
-		</script>	
-    </form>
-
-</body>
-<head>
-	<style>
-	.emoji {
-	  font-size: 50px;
-	  cursor: pointer;
-	  position: relative;
-	  display: block;
-      margin-left: auto;
-	  margin-right: auto;
-	  width: 50%;
-	}
-	
-	
-	
-	
-	.emoji.active:before {
-	  content: "\1F60D";
-	}
-	
-	.emoji:before {
-	  content: "\1F615";
-	}
-	</style>
-	</head>
-	<body>
-		<div class="row">
-			<div class="column">
-				<p class="image" >how do you think?</p>
-				<span class="emoji"></span>
-			</div>
+		<div class="text-center">
+			<!-- Button HTML (to Trigger Modal) -->
+			<a href="{{url_for('add',m=m)}}" class="add-to-cart-button" data-toggle="modal"><input type="submit" value="Add to Cart"></a>
 		</div>
-			
-	
-	<script>
-	var emoji = document.querySelector('.emoji');
-	emoji.addEventListener('click', function() {
-	  emoji.classList.toggle('active');
-	});
-	</script>
-	
-	</body>
+		
+		
+	    </div>  
+
+    </form>
+</div>
+</body>
+</html>
