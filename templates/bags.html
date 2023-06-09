@@ -4,7 +4,7 @@
 <head>
 	<title>shop</title>
 	
-	
+<!-- style hayi ke niaz darim	-->
 	<style>
 	   .texx{
     text-align: center;
@@ -77,7 +77,7 @@ li a:hover:not(.active) {
 
   <body>
 <nav>
-
+<!--ezave kardan navbar-->
 	<div class="texx">
 	  <h1><centre>B&S shop</centre></h1>      
 	  <p><centre>trends, bags & shoes</centre></p>
@@ -87,6 +87,7 @@ li a:hover:not(.active) {
   	<li><a href="{{ url_for('home') }}">BS</a></li>
   	<li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
  	<li><a href="{{ url_for('shoes') }}">SHOES</a></li>
+   <!-- inha shart gozashte shode harja admin dashtim ya karbar chi to ye navbar nshon dade she -->
 	{%if adminlog==True%}
 	<li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
 	{% endif %}
@@ -99,6 +100,7 @@ li a:hover:not(.active) {
 </div>
     </ul>
 <head>
+   <!-- style-->
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
 
@@ -204,13 +206,13 @@ body{
 
 }
 </style>
-
+<!-- box ha ba for tarif shodan va size safhe va style ha-->
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
-   <!-- font awesome cdn link  -->
+  
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <style>
    .box {
@@ -235,7 +237,7 @@ body{
    <div class="products-container">
       {%for i in n%}   
       <div class="product" data-name="p-1">
-         <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt="">
+         <img src="{{bags[i][3]}}" alt="p">
          <h3>{{bags[i][1]}}</h3>
          <div class="price">{{bags[i][6]}}T - {{L[i]}} $</div>
          <div class="left">
