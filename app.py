@@ -294,11 +294,17 @@ def add_product():
     return render_template('add_item.html',message=message, form=form)
 
 
-@app.route('/delete_product')
-def delete_product(x):
-    conn = sqlite3.connect('products.db')
-    cursor = conn.cursor()
-    cursor.execute("DELETE FROM products WHERE name=? AND code=?",(x[1],x[2],))
-    conn.commit()
-    conn.close()
-    return redirect('products',x=x[7])
+@app.route('/delete_product', methods=['GET', 'POST'])
+def delete_product():
+    form = UploadFileForm()
+    if request.method == 'POST':
+        name = request.form['productname']
+        code= request.form['code']
+        conn = sqlite3.connect('products.db')
+        cursor = conn.cursor()
+        cursor.execute('delete from products where name=? and code=?' , (name,code,))
+        conn.commit()
+        message = 'Item has been deleted succesfully.'
+    else:
+        message = 'Please fill the form.'
+    return render_template('delete_item.html',message=message, form=form)
