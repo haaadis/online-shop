@@ -1,8 +1,9 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>shop</title>
-	
+
 	
 	<style>
 	   .texx{
@@ -234,7 +235,7 @@ body{
    <div class="products-container">
       {%for i in n%}   
       <div class="product" data-name="p-1">
-         <img src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt="">
+         <img src="{{bags[i][3]}}" alt="pp">
          <h3>{{bags[i][1]}}</h3>
          <div class="price">{{bags[i][6]}}T - {{L[i]}} $</div>
          <div class="left">
