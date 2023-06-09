@@ -165,10 +165,10 @@ li a:hover:not(.active) {
                             </tr>
                             </thead>
                             <tbody>
-                                {% for index, (m,description,quantity,price) in enumerate(orders) %}
+                                {% for index, (m,description,quantity,price,priced,image) in enumerate(orders) %}
                                 <tr>
                                     <td><div class="geeks"><a href="{{ url_for('details',m=m) }}">
-                                      <img src="static\images\product-images\{{m}}.jpg" alt={{m}} style="width:25%"></a></div></td>
+                                      <img src="static\images\product-images\image.jpg" alt=image style="width:25%"></a></div></td>
                                     <td><a href="{{ url_for('details',m=m) }}"><strong>{{m}}</strong></a><p>{{description}}</p></td>
                                     <td>
                                     <form class="form-inline">
@@ -177,8 +177,8 @@ li a:hover:not(.active) {
                                         <a href="{{ url_for('delete', index=index) }}"  class="btn btn-primary"><i class="fa fa-trash-o"></i></a>
                                     </form>
                                     </td>
-                                    <td>{{price}}</td>
-                                    <td>{{price}}*{{quantity}}</td>
+                                    <td>{{price}}/{{priced}}</td>
+                                    <td>{{price}}*{{quantity}}/{{priced}}*{{quantity}}</td>
                                 </tr>
                                 {% endfor %}
 
