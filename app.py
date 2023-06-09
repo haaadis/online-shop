@@ -266,14 +266,13 @@ def checkout():
 			   
 class UploadFileForm(FlaskForm):
     file = FileField('File', validators= [InputRequired()])
-    submit = SubmitField('Upload File')
+    
 
 @app.route('/add_product', methods=['GET', 'POST'])
 def add_product():
     form = UploadFileForm()
-    #if form.validate_on_submit() and request.method == 'POST' and 'name' in request.form and 'size' in request.form and 'color' in request.form and 'price' in request.form and 'stock' in request.form:
     if request.method == 'POST':
-        name = request.form['productName']
+        name = request.form['productname']
         code=str(random.randint(10000,100000))+chr(random.randint(ord('a'), ord('z')))
         stock =  request.form['stock']
         file = form.file.data
@@ -282,15 +281,17 @@ def add_product():
         size = str(request.form['productsize'])
         color = str(request.form['productcolor'])
         price = request.form['price']
-        category = request.form['category']
+        category = request.form.get('category')
+        discount = request.form['discount']
+        new_price = ((100-int(discount))*int(price))//100
         conn = sqlite3.connect('products.db')
         cursor = conn.cursor()
-        cursor.execute("insert into products (id,name,code,image_address,stock, size, color,price,category) values (NULL,? ,?, ?, ?, ?, ?, ?, ?)", [name,code,image_address,stock, size, color,price,category])
+        cursor.execute("insert into products (id,name,code,image_address,stock, size, color,price,category,discount,new_price) values (NULL,? ,?, ?, ?, ?, ?, ?,?,?, ?)", [name,code,image_address,stock, size, color,price,category,discount,new_price])
         conn.commit()
-        message = 'File has been uploaded.'
+        message = 'Item has been uploaded succesfully.'
     else:
-        message = "You need to fill the form!"
-    return render_template('add_item.html', message=message, form=form)
+        message = 'Please fill the form.'
+    return render_template('add_item.html',message=message, form=form)
 
 
 @app.route('/delete_product')
