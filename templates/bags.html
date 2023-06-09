@@ -75,7 +75,7 @@ li a:hover:not(.active) {
 	</style>
   </head>
 
-  <body>
+<body>
 <nav>
 <!--ezave kardan navbar-->
 	<div class="texx">
@@ -87,16 +87,19 @@ li a:hover:not(.active) {
   	<li><a href="{{ url_for('home') }}">BS</a></li>
   	<li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
  	<li><a href="{{ url_for('shoes') }}">SHOES</a></li>
+	{%if session['admin']%}
+        <li><a href="{{ url_for('add_product') }}">add product</a></li>
+        {% endif %}  
    <!-- inha shart gozashte shode harja admin dashtim ya karbar chi to ye navbar nshon dade she -->
 	{%if adminlog==True%}
 	<li style="float:right"><a href="{{ url_for('add_product') }}">About</a></li>
 	{% endif %}
-	{%if log==True%}
-	<li style="float:right"><a href="{{ url_for('logout') }}">log out</a></li>
-	{% else: %}
-	<li style="float:right"><a href="{{ url_for('login') }}">log in</a></li>
-	{% endif %}
-	<li style="float:right"><a href="{{ url_for('cart') }}">cart<sup>{{orders|length}}</sup></a></li>	
+	{%if session['loggedin']%}
+	<li><a href="{{ url_for('logout') }}"><span class="glyphicon glyphicon-user"></span> logout</a></li>	  
+	{% else: %}  
+	<li><a href="{{ url_for('login') }}"><span class="glyphicon glyphicon-user"></span> login</a></li>
+	{% endif %} 
+	<li style="float:right"><a href="{{ url_for('cart') }}"><span class="glyphicon glyphicon-shopping-cart"></span><sup>{{orders|length}}</sup></a></li>
 </div>
     </ul>
 <head>
@@ -231,7 +234,7 @@ body{
  
 
 </head>
-
+<body onscroll="Go_Up();" id="Top">
 <div class="container">
    
    <div class="products-container">
@@ -252,6 +255,21 @@ body{
    
 </div>
       
-
+   <a href="" id="MyButton">
+    <img src="/static/images/up-icon.png" width="50">
+   </a>
+   
+   <script>  
+   function Go_Up(){
+    var Btn_Up = document.getElementById("MyButton");
+    if( window.pageYOffset > 60 ){
+     Btn_Up.classList.add("show")
+    }else{
+     Btn_Up.classList.remove("show");
+    }
+   }  
+   </script>
+	
+	</body>
 </body>
 </html>
