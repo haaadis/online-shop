@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- tytle safhe va navbar-->
 	<title>{{m}}</title>
 	<link rel ="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
 	<meta charset="utf-8">
@@ -204,9 +205,9 @@
 	
 	</head>
 
-	
+<!-- container baraye box etelaat kala va makan ax-->	
 	<div class="container">
-		<div  class="product-image"><img  src="https://us.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-neverfull-mm-monogram-handbags--M40995_PM2_Front%20view.jpg" alt={{product[1]}} width="250px"></div>
+		<div  class="product-image"><img  src="{{product[3]}}" alt={{product[1]}} width="250px"></div>
 	<form action="{{ url_for('add',m=m ) }}" method="post">
 		
 		<p><strong>price:</strong> {{product[6]}} T - {{dollar}} $</p>
@@ -227,7 +228,7 @@
 			{%endfor%}           
         </select>
 
-		<input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+		<input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product[-1] }}">
   
         {%if session['admin']%}
         <a href="{{url_for('delete_product',x=product)}}" method="post">delete product</a>     
