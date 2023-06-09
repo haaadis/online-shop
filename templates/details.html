@@ -188,7 +188,7 @@
 			   <li><a  href="{{ url_for('home') }}">HOME</a></li>
 			   <li><a class="active" href="{{ url_for('bags') }}">BAGS</a></li>
 			  <li><a href="{{ url_for('shoes') }}">SHOES</a></li>
-			 {%if session['adminlog']%}
+			 {%if session['admin']%}
 			 <li style="float:left"><a href="{{ url_for('add_product') }}">add product</a></li>
 			 <li style="float:left"><a href="{{ url_for('delete_product') }}">delete product</a></li> 
 			 {% endif %}
@@ -210,7 +210,7 @@
 		<div  class="product-image"><img  src="{{product[3]}}" alt={{product[1]}} width="250px"></div>
 	<form action="{{ url_for('add',m=m ) }}" method="post">
 		
-		<p><strong>price:</strong> {{product[6]}} T - {{dollar}} $</p>
+		<p><strong>price:</strong> {{product[10]}} T - {{dollar}} $</p>
 	
 		<label for="size">Size:</label>		
 		<select id="size" name="size">	
